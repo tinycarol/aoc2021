@@ -2,7 +2,6 @@
   "name": "adventofcode2021",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
     "test:once": "jest"
@@ -11,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "jest": "^27.4.3"
+  },
+  "devDependencies": {
+    "prettier": "2.5.1"
   }
 }
