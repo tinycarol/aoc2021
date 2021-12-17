@@ -12,6 +12,10 @@ module.exports.ints = async (path) => {
   return (await this.array(path)).map((v) => parseInt(v));
 };
 
+module.exports.intLine = async (path) => {
+  return (await this.file(path)).split(",").map((v) => parseInt(v));
+};
+
 module.exports.matrix = async (path) => {
   return (await this.array(path)).map((v) =>
     v.split("").map((c) => parseInt(c))
@@ -42,3 +46,33 @@ module.exports.bingo = async (path) => {
 
   return bingo;
 };
+
+module.exports.segments = async (path) => {
+  const file = await this.array(path);
+  const segments = [];
+  let max = 0;
+  for (let pair of file) {
+    const [point1, point2] = pair.split(" -> ");
+    const point1Numbers = point1.split(",").map((v) => parseInt(v));
+    const point2Numbers = point2.split(",").map((v) => parseInt(v));
+    segments.push([point1Numbers, point2Numbers]);
+    max = Math.max(max, ...point1Numbers, ...point2Numbers);
+  }
+  return [segments, max];
+};
+
+module.exports.sevenSegments = async (path) => {
+  const array = await this.array(path);
+  return array.map((v) => {
+    const [digits, numbers] = v.split(" | ");
+    return {
+      digits: digits.trim().split(" "),
+      numbers: numbers.trim().split(" "),
+    };
+  });
+};
+
+module.exports.paths = async (path) => {
+  const array = await this.array(path);
+  return array.map(v => v.split("-"));
+}
