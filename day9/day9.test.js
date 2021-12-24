@@ -2,7 +2,7 @@ const file = require("../file");
 const day9 = require(".");
 const parser = file.matrix;
 
-describe("Day 9: smoke", () => {
+describe("Day 9: smoke basin", () => {
   describe("Part 1: low points", () => {
     it("Works with test input", async () => {
       const input = await parser("./day9/test.txt");
